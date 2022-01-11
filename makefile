@@ -6,14 +6,14 @@
 #    By: marius <marius@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 14:35:22 by marius            #+#    #+#              #
-#    Updated: 2022/01/11 14:37:38 by marius           ###   ########.fr        #
+#    Updated: 2022/01/11 14:42:38 by marius           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
-SRCS = ./fillit/.c
-OBJS = ./fillit/.o
-HDR = ./fillit/fillit.h 
+SRCS = ./includes/.c
+OBJS = ./includes/.o
+HDR = ./includes/fillit.h 
 FLAGS = -Wall -Wextra -Werror
 
 LIBFT = libft/

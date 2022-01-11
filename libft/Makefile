@@ -6,7 +6,7 @@
 #    By: marius <marius@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/04 09:27:03 by mangheli          #+#    #+#              #
-#    Updated: 2021/12/30 18:23:08 by marius           ###   ########.fr        #
+#    Updated: 2022/01/11 17:23:22 by marius           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c 
 		ft_strlcat.c ft_strlen.c ft_strmap.c ft_strmapi.c ft_strncat.c ft_strncpy.c \
 		ft_strnequ.c ft_strnew.c ft_strnstr.c ft_strsplit.c ft_strstr.c ft_strsub.c \
 		ft_strtrim.c ft_tolower.c ft_toupper.c ft_strrchr.c ft_strncmp.c \
-		ft_emptyspace.c ft_lstaddlast.c
+		ft_emptyspace.c ft_lstaddlast.c get_next_line.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

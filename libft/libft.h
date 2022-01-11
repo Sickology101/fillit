@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mangheli <mangheli@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:37:25 by mangheli          #+#    #+#             */
-/*   Updated: 2021/11/03 10:37:30 by mangheli         ###   ########.fr       */
+/*   Updated: 2022/01/11 17:25:23 by marius           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define BUFF_SIZE 1
+# define MAX_FD 8192
 
 # include <string.h>
 # include <unistd.h>
@@ -84,5 +86,6 @@ void	ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int		ft_emptyspace(char c);
 void	ft_lstaddlast(t_list *alst, t_list *new);
+int		get_next_line(const int fd, char **line);
 
 #endif
