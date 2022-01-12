@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   newdancinglink.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 14:31:25 by marius            #+#    #+#             */
-/*   Updated: 2022/01/12 10:49:25 by marius           ###   ########.fr       */
+/*   Created: 2022/01/12 10:53:21 by marius            #+#    #+#             */
+/*   Updated: 2022/01/12 11:05:06 by marius           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "fillit.h"
 
-/*
-Here is where the magic happens
-*/
-
-int	main(int argc, char **argv)
+t_list	*ft_new_d_link(void	*previous)
 {
-	int	fd;
-	t_list	link;
+	d_list	*list;
 
-	if (argc > 1)
-	{
-		ft_putstr("./fillit filename.txt should be used to run fillit");
-		return(-1);
-	}
-	fd = open(argv[1], O_RDONLY);
-	read_file(fd, link);
+	list = (d_list *)malloc(sizeof(d_list));
+	if (!list)
+		return (0);
+	list->content = NULL;
+	list->previous = previous;
+	list->next = NULL;
+	return (list);
 }

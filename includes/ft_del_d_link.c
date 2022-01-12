@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_del_d_link.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 14:31:25 by marius            #+#    #+#             */
-/*   Updated: 2022/01/12 10:49:25 by marius           ###   ########.fr       */
+/*   Created: 2022/01/12 11:06:30 by marius            #+#    #+#             */
+/*   Updated: 2022/01/12 11:08:37 by marius           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "fillit.h"
 
-/*
-Here is where the magic happens
-*/
-
-int	main(int argc, char **argv)
+void	ft_del_d_link(t_list **alst)
 {
-	int	fd;
-	t_list	link;
-
-	if (argc > 1)
-	{
-		ft_putstr("./fillit filename.txt should be used to run fillit");
-		return(-1);
-	}
-	fd = open(argv[1], O_RDONLY);
-	read_file(fd, link);
+	
 }
