@@ -6,7 +6,7 @@
 /*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:38:28 by marius            #+#    #+#             */
-/*   Updated: 2022/01/12 11:00:29 by marius           ###   ########.fr       */
+/*   Updated: 2022/01/12 14:31:21 by marius           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 typedef struct s_list
 {
 	char			*content;
+	int				*index;
 	struct s_list	*previous;
 	struct s_list	*next;
 }				d_list;
