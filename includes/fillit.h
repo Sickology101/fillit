@@ -6,7 +6,7 @@
 /*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:38:28 by marius            #+#    #+#             */
-/*   Updated: 2022/01/12 14:31:21 by marius           ###   ########.fr       */
+/*   Updated: 2022/01/12 17:50:47 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,26 @@
 # include "fillit/libft"
 # define BUFF_SIZE 1
 
-typedef struct s_list
+typedef struct	s_node
 {
-	char			*content;
-	int				*index;
-	struct s_list	*previous;
-	struct s_list	*next;
-}				d_list;
+	struct s_node	*up;
+	struct s_node	*down;
+	struct s_node	*left;
+	struct s_node	*right;
+	struct s_node	*column;
+	char			*name;
+	int				size;
+}					t_node;
+/*
+typedef struct	s_node_header
+{
+	struct s_node	*column;
+	}					t_column_header;
+*/
+typedef	struct	s_header
+{
+	struct			*right;
+	struct			*left;
+}					t_header;
 
 #endif
