@@ -6,7 +6,7 @@
 /*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:38:28 by marius            #+#    #+#             */
-/*   Updated: 2022/01/12 17:50:47 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/13 11:03:14 by marius           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "fillit/libft"
+# include "../libft/libft.h"
 # define BUFF_SIZE 1
+# define MAX_SIZE 1000
 
-typedef struct	s_node
+/*typedef struct	s_node
 {
 	struct s_node	*up;
 	struct s_node	*down;
@@ -29,16 +30,20 @@ typedef struct	s_node
 	char			*name;
 	int				size;
 }					t_node;
-/*
+
 typedef struct	s_node_header
 {
 	struct s_node	*column;
 	}					t_column_header;
-*/
+
 typedef	struct	s_header
 {
 	struct			*right;
 	struct			*left;
 }					t_header;
+*/
+
+char	*read_file(int fd, int *error);
+int		check_valid(char *tetrimino);
 
 #endif
