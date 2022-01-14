@@ -6,7 +6,7 @@
 #    By: marius <marius@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/04 09:27:03 by mangheli          #+#    #+#              #
-#    Updated: 2022/01/11 17:23:22 by marius           ###   ########.fr        #
+#    Updated: 2022/01/14 14:39:23 by severi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	gcc -Wall -Werror -Wextra -I libft.h -c $(SRCS)
+	gcc -Wall -Werror -Wextra -I. libft.h -c $(SRCS)
 	ar rc $(NAME)  $(OBJS)
 	ranlib $(NAME)
 
