@@ -6,7 +6,7 @@
 /*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:38:28 by marius            #+#    #+#             */
-/*   Updated: 2022/01/13 01:33:32 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/14 16:07:31 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "fillit/libft"
+# include "libft.h"
+
 # define BUFF_SIZE 1
 # define MAX_TETROMINO 26
 
@@ -33,7 +34,7 @@ typedef struct	s_node
 
 typedef struct	s_header_node
 {
-	struct t_node			base;
+	struct s_node			base;
 	char					*name;
 	size_t					size;
 	}						t_header_node;
@@ -57,6 +58,6 @@ typedef struct	s_solution_row
 {
 	t_node					*row_node;
 	char					*name;
-}
+}							t_solution_row;
 
 #endif

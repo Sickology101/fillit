@@ -1,35 +1,42 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: marius <marius@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 14:35:22 by marius            #+#    #+#              #
-#    Updated: 2022/01/11 14:42:38 by marius           ###   ########.fr        #
+#    Updated: 2022/01/14 16:09:41 by severi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
-SRCS = ./includes/.c
-OBJS = ./includes/.o
-HDR = ./includes/fillit.h 
+SRCS = includes/main.c 
+#		includes/read.c \
+OBJS = includes/*.o
+HDR = includes/fillit.h
+LHDR = libft/
 FLAGS = -Wall -Wextra -Werror
+DFLAGS = -g -fsanitize=address -Wconversion
 
 LIBFT = libft/
 
 all: $(NAME)
 
 $(NAME):
-    make -C $(LIBFT)
-    gcc $(FLAGS) -o $(NAME) $(SRCS) -I $(HDR) -L. libft/libft.a
+	make -C $(LIBFT)
+	gcc $(FLAGS) -o $(NAME) $(SRCS)-I $(LHDR) $(HDR) -L. libft/libft.a
 
 clean: 
-    /bin/rm -f $(OBJS)
-    make -C $(LIBFT) clean
+	/bin/rm -f $(OBJS)
+	make -C $(LIBFT) clean
 
 fclean: clean
-    /bin/rm -f $(NAME)
-    make -C $(LIBFT) fclean
+	/bin/rm -f $(NAME)
+	make -C $(LIBFT) fclean
 
 re: fclean all
+
+debug: re 
+	make -C $(LIBFT)
+	gcc $(FLAGS) $(DFLAGS) -o $(NAME) $(SRCS)-I $(LHDR) $(HDR) -L. libft/libft.a
