@@ -6,7 +6,7 @@
 /*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:38:28 by marius            #+#    #+#             */
-/*   Updated: 2022/01/17 12:53:06 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/17 20:06:24 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ typedef struct s_row
 	struct	s_row			*down;
 	struct	s_row			*up;
 	int						tetr[4][2];
+	int						length;
+	char					*name;
+	struct	s_row			*head;
 }							t_row;
 
 typedef struct s_solution

@@ -6,19 +6,22 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 04:46:52 by severi            #+#    #+#             */
-/*   Updated: 2022/01/17 13:05:32 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/17 20:35:39 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 int ft_strcountchr(char *str, char c)
 {
 	int count;
 
-	while (*str == c || *str != '\0')
+	count = 0;
+	while (*str != '\0')
 	{
-		count++;
+		if (*str == c)
+			count++;
 		str++;
 	}
 	return (count);
@@ -37,7 +40,7 @@ int		chk_connections_4_ways(char *tetr, int nxn_size, int i)
 	int connections;
 
 	connections = 0;
-	if (i % nxn_size > 1)
+	if (i % nxn_size >= 1)
 	{
 		if (tetr[i+1] == '#')
 			connections++;
@@ -60,10 +63,10 @@ int		chk_connections_4_ways(char *tetr, int nxn_size, int i)
 	return (connections);
 }
 // str = ".......####......"
-// ####
+// 
 // ....
-// ....
-// ....
+// .##.
+// .##.
 // ....
 //
 int		chk_edges_connected(char *tetr, int nxn_size)
@@ -75,7 +78,7 @@ int		chk_edges_connected(char *tetr, int nxn_size)
 	concs = 0;
 	while (++i < nxn_size * nxn_size)
 	{
-		if (tetr[++i] == '#')
+		if (tetr[i] == '#')
 			concs += chk_connections_4_ways(tetr, nxn_size, i);
 	}
 	return (concs);
@@ -117,9 +120,6 @@ int		count_zeros_rows(char *tetrimino)
 	return (zero);
 }
 
-// 1000100010001000
-// 0   4   8   12131415
-//
 int		count_zeros_columns(char *tetrimino)
 {
 	int zero;
@@ -138,19 +138,71 @@ int		count_zeros_columns(char *tetrimino)
 	}
 	return (zero);
 }
+//    0123
+//	0.0000	y_0 =  1 x_0 = 2
+//	1.00##	array[4][2] =  ( 6 % 4 - x_0 ) = ( 2 - 2) = 0 , (7 % 3 - x_0) = (3 - 2) = 1       {0 , 0}
+//  2.00##					( 10 % 4 - x_0 ) = (2 - 2) = 0 , ( 11 % 4 - x_0 ) = (3 - 2) = 1 
+//  3.0000
+//  
+//
 
-void	add_to_struct(char *tetrimino)
+void	add_to_row(t_row **row, char *tetrimino, int x, int y)
+{
+	int i;
+	int j;
+	int k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (i < 16)
+	{
+		if (i > 3 && i % 4 == 0)
+			j++;
+		if (tetrimino[i] == '#')
+		{
+			(*row)->tetr[k][0] = i % 4 - x;
+			(*row)->tetr[k++][1] = j - y;
+		}
+		i++;
+	}
+}
+
+void	print_4_2_array(t_row *row)
+{
+	printf("name: %s\n", row->name);
+	printf("(%d,", row->tetr[0][0]);
+	printf("%d)\n", row->tetr[0][1]);
+	printf("(%d,", row->tetr[1][0]);
+	printf("%d)\n", row->tetr[1][1]);
+	printf("(%d,", row->tetr[2][0]);
+	printf("%d)\n", row->tetr[2][1]);
+	printf("(%d,", row->tetr[3][0]);
+	printf("%d)\n", row->tetr[3][1]);
+}
+
+void	add_to_list(t_row *row, t_row **root)
+{
+	(*root)->down = row;
+	row->down = *root;
+}
+
+/*
+ * 	This functions called n times, n = amount of tetrimino
+ */
+void	add_to_struct(char *tetrimino, t_row **root)
 {
 	int y_0;
 	int x_0;
-	//t_row row;
+	t_row *row;
+//	static t_row *root;
 	
+	row = (t_row*)malloc(sizeof(t_row));	
 	y_0 = count_zeros_rows(tetrimino);
 	x_0 = count_zeros_columns(tetrimino);
-	
-	x_0 = y_0 + x_0;
-	// TODO: row->tetr ;
-	
+	add_to_row(&row, tetrimino, x_0, y_0);
+	print_4_2_array(row);	
+	add_to_list(row, root);
 }
 
 void	error()
@@ -160,29 +212,36 @@ void	error()
 	return;
 }
 
-int		chk_vld_add_stru(char *tetrimino)
+int		chk_vld_add_stru(char *tetrimino, t_row **root)
 {
 	if (chk_out_of_bounds(tetrimino) == 0)
 		return (0);
 	if (chk_edges_connected(tetrimino, 4) < 6)
 		return (0);
-	add_to_struct(tetrimino);
+	add_to_struct(tetrimino, root);
 	return (1);
 }
 
 
-
+void	init_root(t_row **root)
+{
+	*root = (t_row*)malloc(sizeof(t_row));
+	(*root)->down = *root;
+	(*root)->up = *root;
+}
 
 void	read_to_array(int fd)
 {
 	char	*line;
 	char	*tetrimino;
-	int	max;
-	int	i;
-	int ret;
+	int		max;
+	int		i;
+	int 	ret;
+	t_row	*root;
 
+	init_root(&root);
 	i = -1;
-	max = MAX_TETRIMINOS;
+	max = 0;
 	tetrimino = ft_strnew(16);
 	ret = get_next_line(fd, &line);
 	while (++i < 4 && ret >= 1)
@@ -191,13 +250,14 @@ void	read_to_array(int fd)
 		if (i == 3)
 		{
 			i = -1;
-			if(++max > 26)
+			if(++max > MAX_TETRIMINOS)
 				error();
-			if (chk_vld_add_stru(tetrimino) == 0)
+			if (chk_vld_add_stru(tetrimino, &root) == 0)
 				error();
+		//	printf("tetrimino - %s\n", tetrimino);
 			ft_strclr(tetrimino);
 		}
 		ret = get_next_line(fd, &line);
 	}
-	solve();
+	//	solve();
 }

@@ -6,7 +6,7 @@
 /*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:31:25 by marius            #+#    #+#             */
-/*   Updated: 2022/01/17 12:43:04 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/17 19:08:29 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	int	fd;
 	//t_list	link;
 
-	if (argc > 1)
+	if (argc != 2)
 	{
 		ft_putstr("./fillit filename.txt should be used to run fillit");
 		return(-1);
