@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
+/*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 13:38:56 by mangheli          #+#    #+#             */
-/*   Updated: 2022/01/14 16:39:59 by severi           ###   ########.fr       */
+/*   Created: 2022/01/17 11:04:48 by severi            #+#    #+#             */
+/*   Updated: 2022/01/17 11:06:16 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-size_t	ft_strlen(const char *s)
+void	solve()
 {
-	size_t	index;
 
-	index = 0;
-	if (!s)
-		return (0);
-	while (s[index] != '\0')
-	{
-		index++;
-	}
-	return (index);
 }

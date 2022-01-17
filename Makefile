@@ -6,13 +6,14 @@
 #    By: marius <marius@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 14:35:22 by marius            #+#    #+#              #
-#    Updated: 2022/01/14 16:09:41 by severi           ###   ########.fr        #
+#    Updated: 2022/01/17 12:44:52 by severi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
-SRCS = includes/main.c 
-#		includes/read.c \
+SRCS = includes/main.c \
+		includes/readtoarray.c \
+		includes/solve.c 
 OBJS = includes/*.o
 HDR = includes/fillit.h
 LHDR = libft/
