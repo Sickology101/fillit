@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   add_to_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
+/*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 14:31:25 by marius            #+#    #+#             */
-/*   Updated: 2022/01/19 01:16:59 by severi           ###   ########.fr       */
+/*   Created: 2022/01/19 01:36:24 by severi            #+#    #+#             */
+/*   Updated: 2022/01/19 01:38:22 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	main(int argc, char **argv)
+void	add_to_list(t_row *row, t_row **root)
 {
-	int	fd;
-
-	if (argc != 2)
-	{
-		ft_putstr("./fillit filename.txt should be used to run fillit\n");
-		return (-1);
-	}
-	fd = open(argv[1], O_RDONLY);
-	read_to_array(fd);
-	close(fd);
-	return (0);
+	(*root)->down = row;
+	row->down = *root;
 }

@@ -6,7 +6,7 @@
 /*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:38:28 by marius            #+#    #+#             */
-/*   Updated: 2022/01/17 20:06:24 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/19 02:21:19 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ typedef struct s_header_node
 
 typedef struct s_row
 {
-	struct	s_row			*down;
-	struct	s_row			*up;
+	struct s_row			*down;
+	struct s_row			*up;
 	int						tetr[4][2];
 	int						length;
 	char					*name;
-	struct	s_row			*head;
+	struct s_row			*head;
 }							t_row;
 
 typedef struct s_solution
@@ -64,7 +64,13 @@ typedef struct s_solution_row
 	char					*name;
 }							t_solution_row;
 
-void	solve();
+void	solve(void);
 void	read_to_array(int fd);
+void	print_4_2_array(t_row *row);
+int		chk_vld_add_stru(char *tetrimino, t_row **root);
+int		chk_out_of_bounds(char *tetr);
+int		chk_edges_connected(char *tetr, int nxn_size);
+int		chk_vld_add_stru(char *tetrimino, t_row **root);
+void	add_to_list(t_row *row, t_row **root);
 
 #endif
