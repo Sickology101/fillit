@@ -6,7 +6,7 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 01:22:10 by severi            #+#    #+#             */
-/*   Updated: 2022/01/20 03:35:52 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/20 16:33:00 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	print_4_2_array(t_row *row)
 {
-	printf("name: %s\n", row->name);
+	printf("name: %c\n", row->name);
 	printf("(%d,", row->tetr[0][0]);
 	printf("%d)\n", row->tetr[0][1]);
 	printf("(%d,", row->tetr[1][0]);
@@ -41,6 +41,8 @@ void	error(int res)
 		ft_putstr("tetrimino connections under minium of 6. ");
 	if (res == 3)
 		ft_putstr("over 26 tetriminoes! ");
+	if (res == 4)
+		ft_putstr("malloc ");
 	ft_putstr("error\n");
 	exit(res);
 	return ;
@@ -49,8 +51,9 @@ void	error(int res)
 void	init_root(t_row **root)
 {
 	*root = (t_row *) malloc (sizeof(t_row));
-	(*root)->down = *root;
+	(*root)->down = NULL;
 	(*root)->up = *root;
+	(*root)->name = '\0';
 }
 
 int	get_lines(int fd, t_row **root, char **tetrimino)
@@ -93,8 +96,9 @@ void	read_to_array(int fd)
 	init_root(&root);
 	result = get_lines(fd, &root, &tetrimino);
 	ft_strdel(&tetrimino);
+	//print_root(root);
 	if (result == 0)
-		solve();
+		solve(root);
 	else
 		error(result);
 }

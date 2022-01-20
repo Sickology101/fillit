@@ -6,7 +6,7 @@
 /*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:31:25 by marius            #+#    #+#             */
-/*   Updated: 2022/01/19 01:16:59 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/20 15:59:27 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		error(-1);
 	read_to_array(fd);
 	close(fd);
 	return (0);

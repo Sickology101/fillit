@@ -6,7 +6,7 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 04:46:52 by severi            #+#    #+#             */
-/*   Updated: 2022/01/20 03:33:37 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/20 16:26:55 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,14 @@ void	add_to_struct(char *tetrimino, t_row **root)
 	int		y_0;
 	int		x_0;
 	t_row	*row;
-//?	static t_row *root;
+	static char name = 'A';
+
 	row = (t_row *) malloc (sizeof(t_row));
 	y_0 = count_zeros_rows(tetrimino);
 	x_0 = count_zeros_columns(tetrimino);
 	add_to_row(&row, tetrimino, x_0, y_0);
-	print_4_2_array(row);
-	add_to_list(row, root);
+	//print_4_2_array(row);
+	add_to_list(row, root, name++);
 }
 
 int	chk_vld_add_stru(char *tetrimino, t_row **root)
