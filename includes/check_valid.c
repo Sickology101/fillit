@@ -6,7 +6,7 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 01:32:58 by severi            #+#    #+#             */
-/*   Updated: 2022/01/19 02:04:46 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/20 03:37:22 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	chk_connections_4_ways(char *tetr, int nxn_size, int i)
 	int	connections;
 
 	connections = 0;
-	if (i % nxn_size >= 1)
+	if (i % nxn_size != 3)
 	{
 		if (tetr[i + 1] == '#')
 			connections++;
@@ -55,7 +55,7 @@ int	chk_connections_4_ways(char *tetr, int nxn_size, int i)
 		if (tetr[i - 1] == '#')
 			connections++;
 	}
-	if (i > nxn_size)
+	if (i >= nxn_size)
 	{
 		if (tetr[i - nxn_size] == '#')
 			connections++;

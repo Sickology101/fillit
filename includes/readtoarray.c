@@ -6,7 +6,7 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 04:46:52 by severi            #+#    #+#             */
-/*   Updated: 2022/01/19 02:55:07 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/20 03:33:37 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	count_zeros_columns(char *tetrimino)
 	while (tetrimino[(i + (3 * i)) + zero] != '#')
 	{
 		i++;
-		if (i == 3)
+		if (i == 4)
 		{
 			zero++;
 			i = 0;
@@ -90,9 +90,9 @@ void	add_to_struct(char *tetrimino, t_row **root)
 int	chk_vld_add_stru(char *tetrimino, t_row **root)
 {
 	if (chk_out_of_bounds(tetrimino) == 0)
-		return (1);
+		error(1);
 	if (chk_edges_connected(tetrimino, 4) < 6)
-		return (1);
+		error(2);
 	add_to_struct(tetrimino, root);
 	return (0);
 }

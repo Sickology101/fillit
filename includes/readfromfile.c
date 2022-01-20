@@ -6,7 +6,7 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 01:22:10 by severi            #+#    #+#             */
-/*   Updated: 2022/01/19 02:59:28 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/20 03:35:52 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,22 @@ void	print_4_2_array(t_row *row)
 }
 
 /**
- * TODO: ADD freeing of allocated memory
+ * TODO: ADD freeing of allocated memory, UPDATE:
+ * might not be necessary with exit() but is it allowed?
+ * See conversion in Discord.
  */
-void	error(void)
+void	error(int res)
 {
+	if (res == -1)
+		ft_putstr("read error ");
+	if (res == 1)
+		ft_putstr("tetrimino not 16 chars, 12 empty, 4 valid! ");
+	if (res == 2)
+		ft_putstr("tetrimino connections under minium of 6. ");
+	if (res == 3)
+		ft_putstr("over 26 tetriminoes! ");
 	ft_putstr("error\n");
+	exit(res);
 	return ;
 }
 
@@ -53,7 +64,7 @@ int	get_lines(int fd, t_row **root, char **tetrimino)
 	max = 0;
 	ret = get_next_line(fd, &line);
 	if (ret < 1)
-		return (1);
+		return (-1);
 	while (++i < 4 && ret >= 1)
 	{
 		*tetrimino = ft_strjoin(*tetrimino, line);
@@ -61,8 +72,8 @@ int	get_lines(int fd, t_row **root, char **tetrimino)
 		{
 			i = -1;
 			if (++max > MAX_TETRIMINOS || \
-				chk_vld_add_stru(*tetrimino, root) == 1)
-				return (1);
+				chk_vld_add_stru(*tetrimino, root) != 0)
+				return (3);
 			printf("tetrimino - %s\n", *tetrimino);
 			ft_strclr(*tetrimino);
 			ret = get_next_line(fd, &line);
@@ -85,5 +96,5 @@ void	read_to_array(int fd)
 	if (result == 0)
 		solve();
 	else
-		error();
+		error(result);
 }
