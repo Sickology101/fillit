@@ -6,7 +6,7 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:04:48 by severi            #+#    #+#             */
-/*   Updated: 2022/01/21 21:57:24 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/21 22:48:00 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	solve(t_row *puzzle)
 		root = create(puzzle, &col_ptr, &nxn_size);
 		link_matrix(root, col_ptr, nxn_size);
 	}
-	print_solution(solutions, count, nxn_size);
+	print_solution(solutions, count, nxn_size, -1);
 	free(solutions);
 	free_puzzle(puzzle);
 	destroy_matrix(root, col_ptr, nxn_size);

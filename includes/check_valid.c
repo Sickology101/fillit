@@ -6,7 +6,7 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 01:32:58 by severi            #+#    #+#             */
-/*   Updated: 2022/01/21 18:59:44 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/21 23:14:35 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,15 @@ int	chk_edges_connected(char *tetr, int nxn_size)
 			concs += chk_connections_4_ways(tetr, nxn_size, i);
 	}
 	return (concs);
+}
+
+void	ft_putnchar(char *str, int n)
+{
+	int	i;
+
+	i = -1;
+	while (++i < n)
+	{
+		ft_putchar(str[i]);
+	}
 }
