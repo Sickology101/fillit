@@ -6,7 +6,7 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 01:36:24 by severi            #+#    #+#             */
-/*   Updated: 2022/01/21 20:55:50 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/21 21:53:08 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	print_solution(t_row **sol, int count, int n_size)
 	int		str_obj;
 
 	i = -1;
-	str = ft_strnew(n_size * n_size);
+	str = ft_strnew((size_t)(n_size * n_size));
 	while (++i < n_size * n_size)
 		str[i] = '.';
 	i = -1;
@@ -118,7 +118,7 @@ void	print_solution(t_row **sol, int count, int n_size)
 	i = -1;
 	while (++i < n_size)
 	{
-		ft_putstr(ft_strsub(str, i * n_size, n_size));
+		ft_putstr(ft_strsub(str, (unsigned int)(i * n_size), (size_t)n_size));
 		ft_putchar('\n');
 	}
 }

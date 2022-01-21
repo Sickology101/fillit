@@ -6,12 +6,11 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 04:46:52 by severi            #+#    #+#             */
-/*   Updated: 2022/01/21 21:22:32 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/21 22:00:32 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 static int	count_zeros_rows(char *tetrimino)
 {

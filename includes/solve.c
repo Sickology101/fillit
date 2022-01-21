@@ -6,12 +6,11 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:04:48 by severi            #+#    #+#             */
-/*   Updated: 2022/01/21 21:29:23 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/21 21:57:24 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 int	calc_size(int n)
 {
@@ -30,7 +29,7 @@ void	create_columns(t_col ***col, int size)
 	int	i;
 
 	i = 0;
-	*col = (t_col **)malloc(sizeof(t_col *) * (size * size));
+	*col = (t_col **)malloc(sizeof(t_col *) * (size_t)(size * size));
 	if (!(*col))
 		error(4);
 	while (i < size * size)
@@ -87,7 +86,7 @@ void	solve(t_row *puzzle)
 
 	col_ptr = NULL;
 	count = puzzle->up->name - START_NAME + 1;
-	solutions = (t_row **)malloc(sizeof(t_row *) * count);
+	solutions = (t_row **)malloc(sizeof(t_row *) * (size_t)count);
 	if (!solutions)
 		error(4);
 	nxn_size = calc_size(count);
