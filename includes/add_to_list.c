@@ -6,12 +6,12 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 01:36:24 by severi            #+#    #+#             */
-/*   Updated: 2022/01/20 16:57:40 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/21 18:19:34 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
+#include <stdio.h>
 void	add_to_list(t_row *row, t_row **root, char name)
 {
 	row->name = name;
@@ -28,8 +28,7 @@ int		fits(t_row *fig, int nxn_size, int x, int y)
 	i = 0;
 	while (i < 4)
 	{
-		if (fig->tetr[i][0] + x => 4 || \
- fig->tetr[i][1] + y => nxn_size)
+		if (fig->tetr[i][0] + x >= nxn_size || fig->tetr[i][1] + y >= nxn_size)
 		{
 			return (0);
 		}
@@ -44,10 +43,10 @@ void	add_row(t_row **header, t_row *fig, int x, int y)
 	int i;
 
 	i = 0;
-	row = (t_row *) malloc (sizeof(t_row *));
+	row = (t_row *)malloc(sizeof(t_row));
 	if (!row)
 		error(4);
-	row->lenght = 0;
+	row->length = 0;
 	row->name = fig->name;
 	row->up = row;
 	row->down = row;
@@ -76,7 +75,7 @@ t_row	*add_to_header(t_row *root, int nxn_size)
 
 	row_header = NULL;
 	temp = root->down;
-	while (temp != root->down)
+	while (temp != root)
 	{
 		y = -1;
 		while (++y < nxn_size)
@@ -88,26 +87,40 @@ t_row	*add_to_header(t_row *root, int nxn_size)
 					add_row(&row_header, temp, x, y);
 			} 
 		}
+		temp = temp->down;
 	}
 	if (row_header)
 		return (row_header->down);
 	return (NULL);
 }
 
-void	print_root(t_row *root)
+void	print_solution(t_row **solution, int count, int nxn_size)
 {
-	t_row *temp;
+	char str[nxn_size * nxn_size];
+	int i;
+	int obj;
+	int str_obj;
 
-	temp = root->down;
-	while (temp != root)
+	//printf("count %i\n", count);
+	i = -1;
+	while (++i < nxn_size * nxn_size)
+		str[i] = '.';
+	i = -1;
+	//ft_putstr(str);
+	while (++i < count)
 	{
-		print_4_2_array(temp);
-		temp = temp->down;
+		obj = -1;
+		while (++obj < 4)
+		{
+			str_obj = solution[i]->tetr[obj][1] * nxn_size + solution[i]->tetr[obj][0];
+			str[str_obj] = solution[i]->name;
+		}
+	}
+	//ft_putstr(str);
+	i = -nxn_size;
+	while ((i += nxn_size) < nxn_size * nxn_size)
+	{
+		write(1, str + i, nxn_size);	
+		ft_putchar('\n');
 	}
 }
-
-
-
-
-
-

@@ -6,7 +6,7 @@
 #    By: marius <marius@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 14:35:22 by marius            #+#    #+#              #
-#    Updated: 2022/01/19 01:44:24 by severi           ###   ########.fr        #
+#    Updated: 2022/01/21 17:19:50 by severi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,15 @@ SRCS = includes/main.c \
 		includes/solve.c \
 		includes/readfromfile.c \
 		includes/add_to_list.c \
-		includes/check_valid.c 
+		includes/check_valid.c \
+		includes/matrix.c \
+		includes/link_matrix.c  
 OBJS = includes/*.o
 HDR = includes/fillit.h
 LHDR = libft/
 FLAGS = -Wall -Wextra -Werror
 DFLAGS = -g -fsanitize=address -Wconversion
+LLDBFLAGS = -g
 
 LIBFT = libft/
 
@@ -44,3 +47,7 @@ re: fclean all
 debug: fclean
 	make -C $(LIBFT)
 	gcc $(FLAGS) $(DFLAGS) -o $(NAME) $(SRCS)-I $(LHDR) $(HDR) -L. libft/libft.a
+
+lldb: fclean
+	make -C $(LIBFT)
+	gcc $(FLAGS) $(LLDBFLAGS) -o $(NAME) $(SRCS)-I $(LHDR) $(HDR) -L. libft/libft.a
