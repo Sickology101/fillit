@@ -6,7 +6,7 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:43:41 by severi            #+#    #+#             */
-/*   Updated: 2022/01/21 17:14:39 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/21 21:33:28 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	uncover(t_row *stack[], int *stack_id)
 {
-	t_row 	*row;
+	t_row	*row;
 	t_node	*node;
 	int		length;
 
@@ -36,7 +36,7 @@ void	uncover(t_row *stack[], int *stack_id)
 
 t_row	*cover_row(t_row *row)
 {
-	t_node *node;
+	t_node	*node;
 	int		length;
 
 	node = row->head;
@@ -54,8 +54,8 @@ t_row	*cover_row(t_row *row)
 
 void	cover(t_row *(*stack)[], int *stack_id, t_row *temp)
 {
-	t_node *row_node;
-	t_node *col_node;
+	t_node	*row_node;
+	t_node	*col_node;
 	int		do_while_fake;
 
 	do_while_fake = 1;
@@ -75,10 +75,10 @@ void	cover(t_row *(*stack)[], int *stack_id, t_row *temp)
 
 void	destroy_matrix(t_row *root, t_col **col, int nxn_size)
 {
-	t_row *free_row;
-	t_row *last_row;
-	t_node *free_node;
-	int i;
+	t_row	*free_row;
+	t_row	*last_row;
+	t_node	*free_node;
+	int		i;
 
 	last_row = root->up;
 	while (root != last_row)
@@ -86,7 +86,6 @@ void	destroy_matrix(t_row *root, t_col **col, int nxn_size)
 		free_row = root;
 		root = root->down;
 		free(free_row);
-		
 	}
 	free(root);
 	i = -1;
@@ -103,12 +102,12 @@ void	destroy_matrix(t_row *root, t_col **col, int nxn_size)
 	free(col);
 }	
 
-int		algorithm_x(t_row *root, t_row ***solutions, int count, int depth)
+int	algorithm_x(t_row *root, t_row ***solutions, int count, int depth)
 {
-	t_row *stack[100 * count];
-	t_row *temp;
-	int stack_id;
-	
+	t_row	*stack[1000];
+	t_row	*temp;
+	int		stack_id;
+
 	stack_id = 0;
 	temp = root->down;
 	while (temp != root && temp->name != START_NAME + depth)

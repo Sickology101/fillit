@@ -6,12 +6,11 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 01:32:58 by severi            #+#    #+#             */
-/*   Updated: 2022/01/20 03:37:22 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/21 18:59:44 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 int	ft_strcountchr(char *str, char c)
 {

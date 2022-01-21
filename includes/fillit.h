@@ -6,7 +6,7 @@
 /*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:38:28 by marius            #+#    #+#             */
-/*   Updated: 2022/01/21 17:12:30 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/21 19:01:54 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	error(int res);
 void	link_matrix(t_row *root, t_col **col, int size);
 void	destroy_matrix(t_row *root, t_col **col_ptr, int nxn_size);
 void	print_solution(t_row **solutions, int count, int nxn_size);
-int		algorithm_x(t_row *root, t_row ***solutions, int count, int depth); 
+int		algorithm_x(t_row *root, t_row ***solutions, int count, int depth);
 t_row	*add_to_header(t_row *root, int nxn_size);
 
 #endif

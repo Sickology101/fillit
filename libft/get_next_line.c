@@ -6,7 +6,7 @@
 /*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:55:54 by mangheli          #+#    #+#             */
-/*   Updated: 2022/01/11 17:24:29 by marius           ###   ########.fr       */
+/*   Updated: 2022/01/21 18:51:06 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static	char	*get_line(char *savebuf, char **line, int *error)
 	}
 	if (index + 1 <= size)
 	{
-		temp = ft_strsub(savebuf, index + 1, size -1);
+		temp = ft_strsub(savebuf, index + 1, size - 1);
 		ft_strdel(&savebuf);
 		savebuf = strupdate(temp, "\0");
 		*error = 1;

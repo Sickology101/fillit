@@ -6,43 +6,14 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 01:22:10 by severi            #+#    #+#             */
-/*   Updated: 2022/01/20 16:33:00 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/21 18:58:57 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
-void	print_4_2_array(t_row *row)
-{
-	printf("name: %c\n", row->name);
-	printf("(%d,", row->tetr[0][0]);
-	printf("%d)\n", row->tetr[0][1]);
-	printf("(%d,", row->tetr[1][0]);
-	printf("%d)\n", row->tetr[1][1]);
-	printf("(%d,", row->tetr[2][0]);
-	printf("%d)\n", row->tetr[2][1]);
-	printf("(%d,", row->tetr[3][0]);
-	printf("%d)\n", row->tetr[3][1]);
-}
-
-/**
- * TODO: ADD freeing of allocated memory, UPDATE:
- * might not be necessary with exit() but is it allowed?
- * See conversion in Discord.
- */
 void	error(int res)
 {
-	if (res == -1)
-		ft_putstr("read error ");
-	if (res == 1)
-		ft_putstr("tetrimino not 16 chars, 12 empty, 4 valid! ");
-	if (res == 2)
-		ft_putstr("tetrimino connections under minium of 6. ");
-	if (res == 3)
-		ft_putstr("over 26 tetriminoes! ");
-	if (res == 4)
-		ft_putstr("malloc ");
 	ft_putstr("error\n");
 	exit(res);
 	return ;
@@ -77,7 +48,6 @@ int	get_lines(int fd, t_row **root, char **tetrimino)
 			if (++max > MAX_TETRIMINOS || \
 				chk_vld_add_stru(*tetrimino, root) != 0)
 				return (3);
-			printf("tetrimino - %s\n", *tetrimino);
 			ft_strclr(*tetrimino);
 			ret = get_next_line(fd, &line);
 		}
@@ -96,7 +66,6 @@ void	read_to_array(int fd)
 	init_root(&root);
 	result = get_lines(fd, &root, &tetrimino);
 	ft_strdel(&tetrimino);
-	//print_root(root);
 	if (result == 0)
 		solve(root);
 	else

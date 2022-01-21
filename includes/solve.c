@@ -6,16 +6,16 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:04:48 by severi            #+#    #+#             */
-/*   Updated: 2022/01/21 18:19:45 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/21 21:29:23 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
 
-int		calc_size(int n)
+int	calc_size(int n)
 {
-	int size;
+	int	size;
 
 	size = 2;
 	while (size * size / 4 < n)
@@ -27,7 +27,7 @@ int		calc_size(int n)
 
 void	create_columns(t_col ***col, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	*col = (t_col **)malloc(sizeof(t_col *) * (size * size));
@@ -44,17 +44,12 @@ void	create_columns(t_col ***col, int size)
 
 t_row	*create(t_row *puzzle, t_col ***col_ptr, int *size)
 {
-	t_row *root;
-	t_row *row_header;
+	t_row	*root;
+	t_row	*row_header;
 
-	row_header = NULL;
-/*
 	row_header = add_to_header(puzzle, *size);
 	while (row_header == NULL)
-		row_header = add_to_header(puzzle, ++(*size));*/
-	while ((row_header = add_to_header(puzzle, *size)) == NULL)
-		(*size)++;
-
+		row_header = add_to_header(puzzle, (*size)++);
 	create_columns(col_ptr, *size);
 	root = (t_row *)malloc(sizeof(t_row));
 	if (!root)
@@ -69,8 +64,8 @@ t_row	*create(t_row *puzzle, t_col ***col_ptr, int *size)
 
 void	free_puzzle(t_row *puzzle)
 {
-	t_row *temp;
-	t_row *last;
+	t_row	*temp;
+	t_row	*last;
 
 	last = puzzle->up;
 	while (puzzle != last)
@@ -85,9 +80,9 @@ void	free_puzzle(t_row *puzzle)
 void	solve(t_row *puzzle)
 {
 	int		nxn_size;
-	int 	count;
-	t_row 	*root;
-	t_col 	**col_ptr;
+	int		count;
+	t_row	*root;
+	t_col	**col_ptr;
 	t_row	**solutions;
 
 	col_ptr = NULL;
@@ -104,11 +99,6 @@ void	solve(t_row *puzzle)
 		root = create(puzzle, &col_ptr, &nxn_size);
 		link_matrix(root, col_ptr, nxn_size);
 	}
-	//printf("something is happening, size = %i\n", nxn_size);
-	//printf("solutions = %c", solutions[0]->tetr[]
-	//print_4_2_array(solutions[0]);
-	//print_4_2_array(solutions[1]);
-
 	print_solution(solutions, count, nxn_size);
 	free(solutions);
 	free_puzzle(puzzle);

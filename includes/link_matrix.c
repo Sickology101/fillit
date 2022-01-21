@@ -6,7 +6,7 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:13:35 by severi            #+#    #+#             */
-/*   Updated: 2022/01/21 17:41:53 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/21 21:16:08 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	insert_in_col(t_node *head, t_node *new)
 	new->up->down = new;
 	new->down->up = new;
 }
-	
+
 void	insert_in_row(t_node *head, t_node *new)
 {
 	new->right = head;
@@ -30,10 +30,10 @@ void	insert_in_row(t_node *head, t_node *new)
 
 void	add_node(t_row *row, t_col *col)
 {
-	t_node *node;
+	t_node	*node;
 
 	node = (t_node *)malloc(sizeof(t_node));
-	if(!node)
+	if (!node)
 		error(4);
 	node->row = row;
 	if (row->length == 0)
@@ -61,7 +61,7 @@ void	link_matrix(t_row *root, t_col **col, int size)
 	t_row	*row;
 	int		i;
 	int		col_id;
-	
+
 	row = root->down;
 	while (row != root)
 	{
@@ -74,5 +74,4 @@ void	link_matrix(t_row *root, t_col **col, int size)
 		}
 		row = row->down;
 	}
-	
 }

@@ -6,12 +6,12 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 01:36:24 by severi            #+#    #+#             */
-/*   Updated: 2022/01/21 18:19:34 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/21 20:55:50 by severi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
+
 void	add_to_list(t_row *row, t_row **root, char name)
 {
 	row->name = name;
@@ -21,9 +21,9 @@ void	add_to_list(t_row *row, t_row **root, char name)
 	row->up->down = row;
 }
 
-int		fits(t_row *fig, int nxn_size, int x, int y)
+int	fits(t_row *fig, int nxn_size, int x, int y)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 4)
@@ -39,8 +39,8 @@ int		fits(t_row *fig, int nxn_size, int x, int y)
 
 void	add_row(t_row **header, t_row *fig, int x, int y)
 {
-	t_row *row;
-	int i;
+	t_row	*row;
+	int		i;
 
 	i = 0;
 	row = (t_row *)malloc(sizeof(t_row));
@@ -50,7 +50,7 @@ void	add_row(t_row **header, t_row *fig, int x, int y)
 	row->name = fig->name;
 	row->up = row;
 	row->down = row;
-	if (*header	!= NULL)
+	if (*header != NULL)
 	{
 		row->up = *header;
 		row->down = (*header)->down;
@@ -68,10 +68,10 @@ void	add_row(t_row **header, t_row *fig, int x, int y)
 
 t_row	*add_to_header(t_row *root, int nxn_size)
 {
-	t_row *temp;
-	t_row *row_header;
-	int x;
-	int y;
+	t_row	*temp;
+	t_row	*row_header;
+	int		x;
+	int		y;
 
 	row_header = NULL;
 	temp = root->down;
@@ -85,7 +85,7 @@ t_row	*add_to_header(t_row *root, int nxn_size)
 			{
 				if (fits(temp, nxn_size, x, y) == 1)
 					add_row(&row_header, temp, x, y);
-			} 
+			}
 		}
 		temp = temp->down;
 	}
@@ -94,33 +94,31 @@ t_row	*add_to_header(t_row *root, int nxn_size)
 	return (NULL);
 }
 
-void	print_solution(t_row **solution, int count, int nxn_size)
+void	print_solution(t_row **sol, int count, int n_size)
 {
-	char str[nxn_size * nxn_size];
-	int i;
-	int obj;
-	int str_obj;
+	char	*str;
+	int		i;
+	int		obj;
+	int		str_obj;
 
-	//printf("count %i\n", count);
 	i = -1;
-	while (++i < nxn_size * nxn_size)
+	str = ft_strnew(n_size * n_size);
+	while (++i < n_size * n_size)
 		str[i] = '.';
 	i = -1;
-	//ft_putstr(str);
 	while (++i < count)
 	{
 		obj = -1;
 		while (++obj < 4)
 		{
-			str_obj = solution[i]->tetr[obj][1] * nxn_size + solution[i]->tetr[obj][0];
-			str[str_obj] = solution[i]->name;
+			str_obj = sol[i]->tetr[obj][1] * n_size + sol[i]->tetr[obj][0];
+			str[str_obj] = sol[i]->name;
 		}
 	}
-	//ft_putstr(str);
-	i = -nxn_size;
-	while ((i += nxn_size) < nxn_size * nxn_size)
+	i = -1;
+	while (++i < n_size)
 	{
-		write(1, str + i, nxn_size);	
+		ft_putstr(ft_strsub(str, i * n_size, n_size));
 		ft_putchar('\n');
 	}
 }

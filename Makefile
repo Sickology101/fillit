@@ -6,7 +6,7 @@
 #    By: marius <marius@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 14:35:22 by marius            #+#    #+#              #
-#    Updated: 2022/01/21 17:19:50 by severi           ###   ########.fr        #
+#    Updated: 2022/01/21 18:56:53 by severi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ HDR = includes/fillit.h
 LHDR = libft/
 FLAGS = -Wall -Wextra -Werror
 DFLAGS = -g -fsanitize=address -Wconversion
-LLDBFLAGS = -g
+LLDBFLAGS = -g -Wconversion
 
 LIBFT = libft/
 
