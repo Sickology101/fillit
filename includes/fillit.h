@@ -6,7 +6,7 @@
 /*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:38:28 by marius            #+#    #+#             */
-/*   Updated: 2022/01/21 23:12:29 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/22 23:56:15 by ssavukos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "libft.h"
+# include "../libft/libft.h"
 
 # define START_NAME 'A'
 # define MAX_TETRIMINOS 26

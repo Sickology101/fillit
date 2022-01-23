@@ -6,7 +6,7 @@
 #    By: marius <marius@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 14:35:22 by marius            #+#    #+#              #
-#    Updated: 2022/01/21 18:56:53 by severi           ###   ########.fr        #
+#    Updated: 2022/01/22 23:59:49 by ssavukos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT)
-	gcc $(FLAGS) -o $(NAME) $(SRCS)-I $(LHDR) $(HDR) -L. libft/libft.a
+	gcc $(FLAGS) -o $(NAME) $(SRCS) -I $(HDR) -L. libft/libft.a
 
 clean: 
 	/bin/rm -f $(OBJS)
@@ -46,8 +46,8 @@ re: fclean all
 
 debug: fclean
 	make -C $(LIBFT)
-	gcc $(FLAGS) $(DFLAGS) -o $(NAME) $(SRCS)-I $(LHDR) $(HDR) -L. libft/libft.a
+	gcc $(FLAGS) $(DFLAGS) -o $(NAME) $(SRCS)-I $(HDR) -L. libft/libft.a
 
 lldb: fclean
 	make -C $(LIBFT)
-	gcc $(FLAGS) $(LLDBFLAGS) -o $(NAME) $(SRCS)-I $(LHDR) $(HDR) -L. libft/libft.a
+	gcc $(FLAGS) $(LLDBFLAGS) -o $(NAME) $(SRCS)-I $(HDR) -L. libft/libft.a

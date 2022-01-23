@@ -6,7 +6,7 @@
 /*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 01:22:10 by severi            #+#    #+#             */
-/*   Updated: 2022/01/21 23:36:37 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/23 01:53:01 by ssavukos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,56 +27,60 @@ void	init_root(t_row **root)
 	(*root)->name = '\0';
 }
 
-/*
- * TODO: This functions needs rewriting from strach. It does not pass
- * norm, it has memory leak on line 62 which I can't fix and does not work with  
- * 	'eval_tests/bad_tetrimino_2nd_empty' for example.
- */
-int	get_lines(int fd, t_row **root, char **tetrimino, char **line)
+void	return_tetrimino(char buf[], char **tetrimino)
 {
-	int		max;
-	int		i;
-	int		ret;
-	char	*temp;
+	int	i;
+	int	j;
 
-	i = -1;
-	max = 0;
-	ret = get_next_line(fd, line);
-	if (ret < 1)
-		return (-1);
-	while (++i < 4 && ret >= 1)
+	i = 0;
+	j = 0;
+	while (i < 19)
 	{
-		temp = ft_strjoin(*tetrimino, *line);
-		ft_strdel(tetrimino);
-		*tetrimino = temp;
-		if (i == 3)
-		{
-			i = -1;
-			if (++max > MAX_TETRIMINOS || \
-				chk_vld_add_stru(*tetrimino, root) != 0)
-				return (3);
-			ft_strclr(*tetrimino);
-			ret = get_next_line(fd, line);
-		}
-		ft_strdel(line);
-		ret = get_next_line(fd, line);
+		if (i != 4 && i != 9 && i != 14)
+			tetrimino[0][j++] = buf[i];
+		i++;
 	}
-	ft_strdel(line);
-	return (0);
+	if (buf[4] != '\n' || buf[9] != '\n' || buf[14] != '\n' || buf[19] != '\n')
+		ft_strclr(*tetrimino);
+}
+
+int	get_lines(int fd, t_row **root, char **tetrimino)
+{
+	int		ret;
+	char	buf[20 + 1];
+	int		max;
+
+	ret = 20;
+	max = 0;
+	while (ret == 20)
+	{
+		ret = (int)read(fd, &buf, 20);
+		if (ret != 20)
+			error(-1);
+		buf[20] = '\0';
+		return_tetrimino(buf, tetrimino);
+		if (++max > 26 || chk_vld_add_stru(*tetrimino, root) != 0)
+			return (3);
+		buf[0] = '\0';
+		ret = (int)read(fd, &buf, 1);
+		if (ret == 1 && buf[0] == '\n')
+			ret = 20;
+		else if (ret == 0)
+			return (0);
+	}
+	return (-1);
 }
 
 void	read_to_array(int fd)
 {
 	t_row	*root;
 	char	*tetrimino;
-	char	*line;
 	int		result;
 
 	tetrimino = ft_strnew(16);
 	init_root(&root);
-	result = get_lines(fd, &root, &tetrimino, &line);
+	result = get_lines(fd, &root, &tetrimino);
 	ft_strdel(&tetrimino);
-	ft_strdel(&line);
 	if (result == 0)
 		solve(root);
 	else
