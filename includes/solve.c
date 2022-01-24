@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:04:48 by severi            #+#    #+#             */
-/*   Updated: 2022/01/21 22:48:00 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/24 18:18:52 by marius           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_row	*create(t_row *puzzle, t_col ***col_ptr, int *size)
 
 	row_header = add_to_header(puzzle, *size);
 	while (row_header == NULL)
-		row_header = add_to_header(puzzle, (*size)++);
+		row_header = add_to_header(puzzle, ++(*size));
 	create_columns(col_ptr, *size);
 	root = (t_row *)malloc(sizeof(t_row));
 	if (!root)

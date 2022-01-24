@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readtoarray.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: severi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: marius <marius@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 04:46:52 by severi            #+#    #+#             */
-/*   Updated: 2022/01/21 22:00:32 by severi           ###   ########.fr       */
+/*   Updated: 2022/01/24 18:18:40 by marius           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static int	count_zeros_rows(char *tetrimino)
 	i = 0;
 	while (tetrimino[i] != '#')
 	{
-		i++;
 		if ((i + 1) % 4 == 0)
 			zero++;
+		i++;
 	}
 	return (zero);
 }
